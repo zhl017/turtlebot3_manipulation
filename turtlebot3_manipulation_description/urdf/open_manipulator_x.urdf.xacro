@@ -177,6 +177,15 @@
     </inertial>
   </link>
 
+  <!--  Gripper joint -->
+  <joint name="gripper" type="prismatic">
+    <parent link="link5"/>
+    <child link="gripper_link"/>
+    <origin xyz="0.0817 0.021 0.0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit velocity="4.8" effort="1" lower="-0.010" upper="0.019" />
+  </joint>
+
   <!--  Gripper link -->
   <link name="gripper_link">
     <visual>
@@ -203,13 +212,14 @@
     </inertial>
   </link>
 
-  <!--  Gripper joint -->
-  <joint name="gripper" type="prismatic">
+  <!--  Gripper joint sub -->
+  <joint name="gripper_sub" type="prismatic">
     <parent link="link5"/>
-    <child link="gripper_link"/>
-    <origin xyz="0.0817 0.021 0.0" rpy="0 0 0"/>
-    <axis xyz="0 1 0"/>
+    <child link="gripper_link_sub"/>
+    <origin xyz="0.0817 -0.021 0" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit velocity="4.8" effort="1" lower="-0.010" upper="0.019" />
+    <mimic joint="gripper" multiplier="1"/>
   </joint>
 
   <!--  Gripper link sub -->
@@ -237,16 +247,6 @@
                izz="1.0e-03" />
     </inertial>
   </link>
-
-  <!--  Gripper joint sub -->
-  <joint name="gripper_sub" type="prismatic">
-    <parent link="link5"/>
-    <child link="gripper_link_sub"/>
-    <origin xyz="0.0817 -0.021 0" rpy="0 0 0"/>
-    <axis xyz="0 -1 0"/>
-    <limit velocity="4.8" effort="1" lower="-0.010" upper="0.019" />
-    <mimic joint="gripper" multiplier="1"/>
-  </joint>
 
   <!-- end effector joint -->
   <joint name="end_effector_joint" type="fixed">
